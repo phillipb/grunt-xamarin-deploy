@@ -16,18 +16,23 @@ module.exports = function (grunt) {
   grunt.initConfig({
     // Configuration to be run (and then tested).
     xamarin_deploy: {
-      compile: {
+      android: {
+        options: {
+          os: 'ios'
+        },
+        files: {
+          './XamarinAndroid/XamarinAndroid.csproj': 'www/**/*'
+        }
+      },
+      ios: {
+        options: {
+          os: 'android'
+        },
         files: {
           './XamarinIos/XamarinIOS.csproj': 'www/**/*'
         }
       }
-    },
-
-    // Unit tests.
-    nodeunit: {
-      tests: ['test/*_test.js']
     }
-
   });
 
   // Actually load this plugin's task(s).

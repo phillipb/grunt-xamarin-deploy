@@ -14,6 +14,10 @@ var fs = require('fs');
 var _ = require('lodash');
 
 module.exports = function (grunt) {
+  var platform = grunt.option("os"),
+    bundleName = platform === 'ios' ? 'BundleResource' : 'AndroidAsset',
+    pathPrefix = platform === 'ios' ? 'Resources\\' : 'Assets\\';
+
   // Converts XML project file to json
   function jsonify(projectFile, cb) {
     xmlhelper.parseString(fs.readFileSync(projectFile), cb);
@@ -32,22 +36,24 @@ module.exports = function (grunt) {
   function addNewFiles(project, sources) {
     // Remove the old bundled resources
     _.remove(project.Project.ItemGroup, function(group, idx) {
-      return group.BundleResource;
+      return group[bundleName];
     });
 
     // create new bundle
-    var bundle = [];
+    var files = [];
 
     sources.forEach(function(filepath) {
-      bundle.push({
+      files.push({
         '$': {
-          Include: 'Resources\\' + filepath.replace(/\//g, '\\')
+          Include: pathPrefix + filepath.replace(/\//g, '\\')
         }
       });
     });
 
     // Add new bundle to array
-    project.Project.ItemGroup.push({BundleResource: bundle});
+    var bundle = {};
+    bundle[bundleName] = files;
+    project.Project.ItemGroup.push(bundle);
 
     return project;
   }

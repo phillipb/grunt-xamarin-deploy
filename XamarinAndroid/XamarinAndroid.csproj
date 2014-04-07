@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" &apos;$(Configuration)&apos; == &apos;&apos; ">Debug</Configuration>
+    <Platform Condition=" &apos;$(Platform)&apos; == &apos;&apos; ">AnyCPU</Platform>
+    <ProductVersion>10.0.0</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{BE904A08-27CF-4B74-AD82-01C49C96FA3A}</ProjectGuid>
+    <ProjectTypeGuids>{EFBA0AD7-5A72-4C68-AF49-83D382785DCF};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <RootNamespace>XamarinAndroid</RootNamespace>
+    <AndroidApplication>True</AndroidApplication>
+    <AndroidResgenFile>Resources\Resource.designer.cs</AndroidResgenFile>
+    <AndroidResgenClass>Resource</AndroidResgenClass>
+    <MonoAndroidResourcePrefix>Resources</MonoAndroidResourcePrefix>
+    <MonoAndroidAssetsPrefix>Assets</MonoAndroidAssetsPrefix>
+    <AssemblyName>DemoAppOne</AssemblyName>
+    <AndroidManifest>Properties\AndroidManifest.xml</AndroidManifest>
+    <TargetFrameworkVersion>v4.1</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" &apos;$(Configuration)|$(Platform)&apos; == &apos;Debug|AnyCPU&apos; ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AndroidLinkMode>None</AndroidLinkMode>
+    <ConsolePause>false</ConsolePause>
+    <EmbedAssembliesIntoApk>True</EmbedAssembliesIntoApk>
+  </PropertyGroup>
+  <PropertyGroup Condition=" &apos;$(Configuration)|$(Platform)&apos; == &apos;Release|AnyCPU&apos; ">
+    <DebugType>full</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AndroidUseSharedRuntime>false</AndroidUseSharedRuntime>
+    <ConsolePause>false</ConsolePause>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System"/>
+    <Reference Include="System.Xml"/>
+    <Reference Include="System.Core"/>
+    <Reference Include="Mono.Android"/>
+    <Reference Include="Xamarin.Android.Support.v13">
+      <HintPath>..\Components\xamandroidsupportv13-18-13.19.0.1\lib\android\Xamarin.Android.Support.v13.dll</HintPath>
+    </Reference>
+    <Reference Include="Mono.Android.Export"/>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\Components\json.net-4.5.11\lib\android\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Resources\Resource.designer.cs"/>
+    <Compile Include="Properties\AssemblyInfo.cs"/>
+    <Compile Include="MyActionBarDrawerToggle.cs"/>
+    <Compile Include="ViewFragment.cs"/>
+    <Compile Include="MainActivity.cs"/>
+    <Compile Include="Start_Activity.cs"/>
+    <Compile Include="Views\AndroidViewManager.cs"/>
+    <Compile Include="JavaScriptHandler.cs"/>
+    <Compile Include="Views\AndroidViewStack.cs"/>
+    <Compile Include="Views\NavigateCommandAndroidExtensions.cs"/>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\AboutResources.txt"/>
+    <None Include="Assets\AboutAssets.txt"/>
+    <None Include="Properties\AndroidManifest.xml"/>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\values\Strings.xml"/>
+    <AndroidResource Include="Resources\drawable\Icon.png"/>
+    <AndroidResource Include="Resources\Drawable-hdpi\action_other.png"/>
+    <AndroidResource Include="Resources\Drawable-hdpi\action_search.png"/>
+    <AndroidResource Include="Resources\Drawable-hdpi\drawer_shadow_dark.9.png"/>
+    <AndroidResource Include="Resources\Drawable-hdpi\drawer_shadow_light.9.png"/>
+    <AndroidResource Include="Resources\Drawable-hdpi\ic_drawer_dark.png"/>
+    <AndroidResource Include="Resources\Drawable-hdpi\ic_drawer_light.png"/>
+    <AndroidResource Include="Resources\Drawable-mdpi\action_other.png"/>
+    <AndroidResource Include="Resources\Drawable-mdpi\action_search.png"/>
+    <AndroidResource Include="Resources\Drawable-mdpi\drawer_shadow_dark.9.png"/>
+    <AndroidResource Include="Resources\Drawable-mdpi\drawer_shadow_light.9.png"/>
+    <AndroidResource Include="Resources\Drawable-mdpi\ic_drawer_dark.png"/>
+    <AndroidResource Include="Resources\Drawable-mdpi\ic_drawer_light.png"/>
+    <AndroidResource Include="Resources\Drawable-xhdpi\action_other.png"/>
+    <AndroidResource Include="Resources\Drawable-xhdpi\action_search.png"/>
+    <AndroidResource Include="Resources\Drawable-xhdpi\drawer_shadow_dark.9.png"/>
+    <AndroidResource Include="Resources\Drawable-xhdpi\drawer_shadow_light.9.png"/>
+    <AndroidResource Include="Resources\Drawable-xhdpi\ic_drawer_dark.png"/>
+    <AndroidResource Include="Resources\Drawable-xhdpi\ic_drawer_light.png"/>
+    <AndroidResource Include="Resources\Menu\main.xml"/>
+    <AndroidResource Include="Resources\layout\DrawerListItem.axml">
+      <DependentUpon>NavDrawer.axml</DependentUpon>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\NavDrawer.axml"/>
+    <AndroidResource Include="Resources\layout\StartView.axml"/>
+    <AndroidResource Include="Resources\layout\WebView.axml"/>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Resources\Drawable-hdpi\"/>
+    <Folder Include="Resources\Drawable-mdpi\"/>
+    <Folder Include="Resources\Drawable-xhdpi\"/>
+    <Folder Include="Resources\Menu\"/>
+    <Folder Include="Views\"/>
+    <Folder Include="Assets\www\"/>
+  </ItemGroup>
+  <ItemGroup>
+    <XamarinComponentReference Include="xamandroidsupportv13-18">
+      <Version>13.19.0.1</Version>
+      <Visible>False</Visible>
+    </XamarinComponentReference>
+    <XamarinComponentReference Include="json.net">
+      <Version>4.5.11</Version>
+      <Visible>False</Visible>
+    </XamarinComponentReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Xamarin.Shared\AprimaMobile.Common\AprimaMobile.Common.csproj">
+      <Project>{E6090E4A-BC21-4383-941D-92F256316060}</Project>
+      <Name>AprimaMobile.Common</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidAsset Include="Assets\www\anotherlevel"/>
+    <AndroidAsset Include="Assets\www\anotherlevel\we&apos;re here"/>
+    <AndroidAsset Include="Assets\www\anotherlevel\werehere.html"/>
+    <AndroidAsset Include="Assets\www\index.html"/>
+    <AndroidAsset Include="Assets\www\index.js"/>
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets"/>
+</Project>

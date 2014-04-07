@@ -160,11 +160,11 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\www\anotherlevel"/>
-    <BundleResource Include="Resources\www\anotherlevel\we&apos;re here"/>
-    <BundleResource Include="Resources\www\anotherlevel\werehere.html"/>
-    <BundleResource Include="Resources\www\index.html"/>
-    <BundleResource Include="Resources\www\index.js"/>
+    <BundleResource Include="Assets\www\anotherlevel"/>
+    <BundleResource Include="Assets\www\anotherlevel\we&apos;re here"/>
+    <BundleResource Include="Assets\www\anotherlevel\werehere.html"/>
+    <BundleResource Include="Assets\www\index.html"/>
+    <BundleResource Include="Assets\www\index.js"/>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.MonoTouch.CSharp.targets"/>
 </Project>

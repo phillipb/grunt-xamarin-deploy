@@ -14,55 +14,55 @@ var fs = require('fs');
 var _ = require('lodash');
 
 module.exports = function (grunt) {
-  // Please see the Grunt documentation for more information regarding task
-  // creation: http://gruntjs.com/creating-tasks
+  // Converts XML project file to json
+  function jsonify(projectFile, cb) {
+    xmlhelper.parseString(fs.readFileSync(projectFile), cb);
+  }
+
+  // Convert JSON to xml project file
+  function writeProjectFile(fileName, data) {
+    var builder = new xmlhelper.Builder();
+    var xml = builder.buildObject(data);
+
+    grunt.file.write(fileName, xml);
+    grunt.log.write(fileName + " was successfully generated");
+  }
+
+  // Add new files specied in the file.src
+  function addNewFiles(project, sources) {
+    // Remove the old bundled resources
+    _.remove(project.Project.ItemGroup, function(group, idx) {
+      return group.BundleResource;
+    });
+
+    // create new bundle
+    var bundle = [];
+
+    sources.forEach(function(filepath) {
+      bundle.push({
+        '$': {
+          Include: 'Resources\\' + filepath.replace(/\//g, '\\')
+        }
+      });
+    });
+
+    // Add new bundle to array
+    project.Project.ItemGroup.push({BundleResource: bundle});
+
+    return project;
+  }
 
   grunt.registerMultiTask('xamarin_deploy', 'This plugin will deploy files to the resource directory of your app', function () {
     var done = this.async();
-    var self = this;
 
-    // Merge task-specific and/or target-specific options with these defaults.
-    var options = this.options({
-      punctuation: '.',
-      separator: ', '
-    });
-
-    xmlhelper.parseString(fs.readFileSync('./XamarinIos/XamarinIOS.csproj'), function(err, resp) {
-      _.remove(resp.Project.ItemGroup, function(group, idx) {
-        return group.BundleResource;
+    this.files.forEach(function (file) {
+      // Get JSON representation of project file
+      jsonify(file.dest, function(err, project) {
+        writeProjectFile(file.dest, addNewFiles(project, file.src));
+        done();
       });
-
-      var newBundle = [];
-
-      self.files.forEach(function (file) {
-        // Concat specified files.
-        var sources = file.src.filter(function (filepath) {
-          // Warn on and remove invalid source files (if nonull was set).
-          if (!grunt.file.exists(filepath)) {
-            grunt.log.warn('Source file "' + filepath + '" not found.');
-            return false;
-          } else {
-            return true;
-          }
-        });
-
-        sources.forEach(function(filepath) {
-          newBundle.push({ '$': { Include: 'Resources\\' + filepath.replace(\//g, '\\') } });
-
-        });
-
-        console.dir(newBundle)
-
-        grunt.log.writeln('File "' + file.dest + '" created.');
-      });
-
-
-      resp.Project.ItemGroup.push({})
-      //console.dir(resp.Project.ItemGroup.length);
-
-      done();
     });
-
   });
-
 };
+
+

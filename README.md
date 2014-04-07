@@ -40,7 +40,8 @@ grunt.initConfig({
 ### Options
 
 ```js
-OS: "android|ios"
+os: "android|ios"
+```
 
 
 ## Contributing

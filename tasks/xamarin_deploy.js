@@ -49,11 +49,13 @@ module.exports = function (grunt) {
     var files = [];
 
     sources.forEach(function(filepath) {
-      files.push({
-        '$': {
-          Include: pathPrefix + filepath.replace(/\//g, '\\')
-        }
-      });
+      if(fs.lstatSync(filepath).isFile()) {
+        files.push({
+          '$': {
+            Include: pathPrefix + filepath.replace(/\//g, '\\')
+          }
+        });
+      }
     });
 
     // Add new bundle to array

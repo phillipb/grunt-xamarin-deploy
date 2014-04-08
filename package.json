@@ -1,6 +1,6 @@
 {
   "name": "grunt-xamarin-deploy",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "This plugin will deploy files to the resources directory of your app",
   "homepage": "https://github.com/phillipb/grunt-xamarin-deploy",
   "repository": "https://github.com/phillipb/grunt-xamarin-deploy.git",

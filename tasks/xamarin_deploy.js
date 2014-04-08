@@ -25,10 +25,16 @@ module.exports = function (grunt) {
 
   // Convert JSON to xml project file
   function writeProjectFile(fileName, data) {
-    var builder = new xmlhelper.Builder();
+    var builder = new xmlhelper.Builder({
+      xmldec:{
+        standalone: false,
+        encoding: "utf-8"
+      }
+    });
+
     var xml = builder.buildObject(data);
 
-    grunt.file.write(fileName, xml);
+    grunt.file.write(fileName, xml.replace(/&apos;/g, "'"));
     grunt.log.write(fileName + " was successfully generated");
   }
 

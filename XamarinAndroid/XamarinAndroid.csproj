@@ -123,7 +123,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <AndroidAsset Include="Assets\www\anotherlevel"/>
     <AndroidAsset Include="Assets\www\anotherlevel\we're here"/>
     <AndroidAsset Include="Assets\www\anotherlevel\werehere.html"/>
     <AndroidAsset Include="Assets\www\index.html"/>

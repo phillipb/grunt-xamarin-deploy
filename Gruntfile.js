@@ -18,7 +18,7 @@ module.exports = function (grunt) {
     xamarin_deploy: {
       android: {
         options: {
-          os: 'ios'
+          os: 'android'
         },
         files: {
           './XamarinAndroid/XamarinAndroid.csproj': 'www/**/*'
@@ -26,7 +26,7 @@ module.exports = function (grunt) {
       },
       ios: {
         options: {
-          os: 'android'
+          os: 'ios'
         },
         files: {
           './XamarinIos/XamarinIOS.csproj': 'www/**/*'

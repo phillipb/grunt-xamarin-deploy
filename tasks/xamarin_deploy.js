@@ -14,9 +14,7 @@ var fs = require('fs');
 var _ = require('lodash');
 
 module.exports = function (grunt) {
-  var platform = grunt.option("os"),
-    bundleName = platform === 'ios' ? 'BundleResource' : 'AndroidAsset',
-    pathPrefix = platform === 'ios' ? 'Resources\\' : 'Assets\\';
+  var platform, bundleName, pathPrefix;
 
   // Converts XML project file to json
   function jsonify(projectFile, cb) {
@@ -49,6 +47,7 @@ module.exports = function (grunt) {
     var files = [];
 
     sources.forEach(function(filepath) {
+      console.log(pathPrefix);
       if(fs.lstatSync(filepath).isFile()) {
         files.push({
           '$': {
@@ -68,6 +67,10 @@ module.exports = function (grunt) {
 
   grunt.registerMultiTask('xamarin_deploy', 'This plugin will deploy files to the resource directory of your app', function () {
     var done = this.async();
+
+    platform = this.options().os;
+    bundleName = platform === 'ios' ? 'BundleResource' : 'AndroidAsset';
+    pathPrefix = platform === 'ios' ? 'Resources\\' : 'Assets\\';
 
     this.files.forEach(function (file) {
       // Get JSON representation of project file
